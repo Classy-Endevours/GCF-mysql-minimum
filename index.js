@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const user = require("./user");
+const user = require("./operations/user");
 
 /**
  * Responds to any HTTP request.
@@ -12,7 +12,7 @@ const user = require("./user");
 exports.fetch = async (req, res) => {
   try {
     const users = await user.listUsers();
-    let message = req.query.message || req.body.message || "Hello World!";
+    let message = req.query.message || req.body.message || "Welcome to the project!";
     res.status(200).send({ message, users });
   } catch (error) {
     res.status(500).send({ message: error.message });
